@@ -2,13 +2,17 @@ $foreground: #222222;
 $background: #eeeeee;
 $secondary: gray;
 $tertiary: #dddddd;
-$accent: #5353ff;
+$accent: #222222;
+$after: #FF266C;
+$url-background: #bbbbbb;
 
 $foreground-dark: #eeeeee;
 $background-dark: #161616;
 $secondary-dark: #999999;
 $tertiary-dark: #444444;
-$accent-dark: $accent;
+$accent-dark: #eeeeee;
+$after-dark: #00bcf2;
+$url-background-dark: #3b3a39;
 
 @mixin light-theme {
     color: $foreground;
@@ -20,6 +24,15 @@ $accent-dark: $accent;
 
     a, a:link, a:visited {
         color: $accent;
+    }
+
+    a {
+      &:after {
+        color: $after;
+      }
+      &:hover {
+        background: $url-background;
+      }
     }
 
     a:hover {
@@ -53,6 +66,15 @@ $accent-dark: $accent;
 
     a, a:link, a:visited {
         color: $accent-dark;
+    }
+
+    a {
+      &:after {
+        color: $after-dark;
+      }
+      &:hover {
+        background: $url-background-dark;
+      }
     }
 
     a:hover {

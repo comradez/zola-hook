@@ -71,6 +71,27 @@ pre {
     }
 }
 
+a {
+  text-decoration: none;
+  background-color: transparent;
+  padding: .15em .2em;
+  transition: all 0.1s;
+
+  &:hover {
+    fill: black !important;
+  }
+      
+  &:after {
+    content: "°";
+  }
+}
+
+a.no-dot {
+  &:after {
+    content: none;
+  }
+}
+  
 @media all and (max-width: 1200px) {
     body {
         padding: 3em 15%;
