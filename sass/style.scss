@@ -103,3 +103,51 @@ a.no-dot {
         padding: 1em 1em;
     }
 }
+
+#action-botton {
+    $bottonSize: 2.5rem;
+    position: fixed;
+    height: $bottonSize;
+    width: $bottonSize;
+    right: 1rem;
+    bottom: 1rem;
+
+    // font-family: $monospaceFonts;
+
+    overflow: hidden;
+    .action-wrapper {
+        position: absolute;
+        height: $bottonSize;
+        width: $bottonSize;
+        top: 0;
+        transition: top .2s;
+        &:hover {
+            top: -$bottonSize;
+        }
+            
+        .action {
+            height: $bottonSize;
+            width: $bottonSize;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            span {
+                text-decoration: line-through;
+            }
+        }
+        
+        .meter {
+            user-select: none
+        }
+        
+        .up {
+            padding: 0;
+            .icon {
+                height: 1.5em;
+                width: 1.5em;
+                padding: .5em;
+            }
+        }
+    }
+}
