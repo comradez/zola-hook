@@ -1,12 +1,15 @@
 @import "theme";
+@import "metropolis";
+@import "jetbrains_mono";
 
-html, body {
+html,
+body {
     margin: 0;
     padding: 0;
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Metropolis", Helvetica, sans-serif;
     font-size: 14pt;
 
     line-height: 1.3em;
@@ -32,7 +35,12 @@ body {
     margin-bottom: 4em;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     line-height: 1.25;
 }
 
@@ -72,26 +80,30 @@ pre {
 }
 
 a {
-  text-decoration: none;
-  background-color: transparent;
-  padding: .15em .2em;
-  transition: all 0.1s;
+    text-decoration: none;
+    background-color: transparent;
+    padding: .15em .2em;
+    transition: all 0.1s;
 
-  &:hover {
-    fill: black !important;
-  }
-      
-  &:after {
-    content: "°";
-  }
+    &:hover {
+        fill: black !important;
+    }
+
+    &:after {
+        content: "°";
+    }
 }
 
 a.no-dot {
-  &:after {
-    content: none;
-  }
+    &:after {
+        content: none;
+    }
 }
-  
+
+code {
+    font-family: 'Jetbrains Mono', monospace;
+}
+
 @media all and (max-width: 1200px) {
     body {
         padding: 3em 15%;
@@ -115,16 +127,18 @@ a.no-dot {
     // font-family: $monospaceFonts;
 
     overflow: hidden;
+
     .action-wrapper {
         position: absolute;
         height: $bottonSize;
         width: $bottonSize;
         top: 0;
         transition: top .2s;
+
         &:hover {
             top: -$bottonSize;
         }
-            
+
         .action {
             height: $bottonSize;
             width: $bottonSize;
@@ -132,17 +146,19 @@ a.no-dot {
             display: flex;
             align-items: center;
             justify-content: center;
+
             span {
                 text-decoration: line-through;
             }
         }
-        
+
         .meter {
             user-select: none
         }
-        
+
         .up {
             padding: 0;
+
             .icon {
                 height: 1.5em;
                 width: 1.5em;

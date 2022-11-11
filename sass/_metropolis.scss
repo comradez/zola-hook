@@ -1,0 +1,55 @@
+@font-face {
+    font-family: "Metropolis";
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+    src: url('/fonts/Metropolis/Metropolis-Regular.otf') format("opentype");
+    src: url('/fonts/Metropolis/Metropolis-Regular.woff2') format("woff2");
+}
+
+@font-face {
+    font-family: "Metropolis";
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+    src: url('/fonts/Metropolis/Metropolis-Italic.otf') format("opentype");
+    src: url('/fonts/Metropolis/Metropolis-Italic.woff2') format("woff2");
+}
+
+@font-face {
+    font-family: "Metropolis";
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+    src: url('/fonts/Metropolis/Metropolis-SemiBold.otf') format("opentype");
+    src: url('/fonts/Metropolis/Metropolis-SemiBold.woff2') format("woff2");
+}
+  
+
+@font-face {
+    font-family: "Metropolis";
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+    src: url('/fonts/Metropolis/Metropolis-SemiBoldItalic.otf') format("opentype");
+    src: url('/fonts/Metropolis/Metropolis-SemiBoldItalic.woff2') format("woff2");
+}
+  
+@font-face {
+    font-family: "Metropolis";
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+    src: url('/fonts/Metropolis/Metropolis-Bold.otf') format("opentype");
+    src: url('/fonts/Metropolis/Metropolis-Bold.woff2') format("woff2");
+}
+  
+
+@font-face {
+    font-family: "Metropolis";
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+    src: url('/fonts/Metropolis/Metropolis-BoldItalic.otf') format("opentype");
+    src: url('/fonts/Metropolis/Metropolis-BoldItalic.woff2') format("woff2");
+}
