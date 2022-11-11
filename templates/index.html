@@ -3,74 +3,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- JS for MathJax -->
-    <script>
-        window.MathJax = {
-            tex: {
-            inlineMath: [['$','$'], ['\\(','\\)']],
-            displayMath: [ ['$$','$$'], ["\\[","\\]"], ]
-            },
-            startup: {
-            ready: () => {
-                    // Function to iterate over all pre and code elements
-                    // if they contain TeX/LaTeX code for maths as defined
-                    // by the markers in tex settings above then copy their
-                    // textContent before them and remove the element from
-                    // the DOM. 
-                    
-                    // get pre and code elements
-                    var prelist = document.getElementsByTagName("pre");
-                    var codelist = document.getElementsByTagName("code");
-                    // get delimiters for inline and display math
-                    var inline = MathJax.config.tex.inlineMath;
-                    var display = MathJax.config.tex.displayMath;
-                    // start building  a RegExp for each of these math types
-                    var inlineRegexList = [];
-                    var displayRegexList =[];
-                    for(i=0;i<inline.length;i++) {
-                        // https://stackoverflow.com/questions/3446170/escape-string-for-use-in-javascript-regex
-                        delimLEsc = inline[i][0].replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
-                        //alert(delimLEsc);
-                        delimREsc = inline[i][1].replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
-                        inlineRegexList.push("("+delimLEsc+")((.|[\\r\\n\\t])*?)("+delimREsc+")");
-                    };
-                    for(i=0;i<display.length;i++) {
-                        // https://stackoverflow.com/questions/3446170/escape-string-for-use-in-javascript-regex
-                        delimLEsc = display[i][0].replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
-                        //alert(delimLEsc);
-                        delimREsc = display[i][1].replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
-                        displayRegexList.push("("+delimLEsc+")((.|[\\r\\n\\t])*?)("+delimREsc+")");
-                    };
-                    inlineRegExp = new RegExp(inlineRegexList.join("|"));
-                    displayRegExp = new RegExp(displayRegexList.join("|"));
-                    
-                    // iterate over pre elements applying RegExp
-                    // iterate "backwards" as we are removing elements!
-                    for (i=prelist.length; i>0; i--) {
-                        if(displayRegExp.test(prelist[i-1].textContent)) {
-                            var t = document.createTextNode(prelist[i-1].textContent);
-                            prelist[i-1].parentNode.insertBefore(t,prelist[i-1]);
-                            prelist[i-1].parentNode.removeChild(prelist[i-1]);
-                        }
-                    }
-                    // iterate over code elements applying RegExp
-                    // iterate "backwards" as we are removing elements!
-                    for (i=codelist.length; i>0; i--) {
-                        if(inlineRegExp.test(codelist[i-1].textContent)) {
-                            var t = document.createTextNode(codelist[i-1].textContent);
-                            codelist[i-1].parentNode.insertBefore(t,codelist[i-1]);
-                            codelist[i-1].parentNode.removeChild(codelist[i-1]);
-                        }
-                    }
-                // Now process the page in MathJax
-                MathJax.startup.defaultReady();
-            }
-            }
-        };
-    </script>
-    <script type="text/javascript" id="MathJax-script" async
-        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
-    </script>
+    <!-- JS for KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/katex.min.css" integrity="sha384-Juol1FqnotbkyZUT5Z7gUPjQ9gzlwCENvUZTpQBAPxtusdwFLRy382PSDx5UUJ4/" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/katex.min.js" integrity="sha384-97gW6UIJxnlKemYavrqDHSX3SiygeOwIZhwyOKRfSaf0JWKRVj9hLASHgFTzT+0O" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
     <title>{% block title %}{{ config.title }}{% endblock title %}</title>
     {% block extra_head %}
     <link rel="stylesheet" href="{{ get_url(path='style.css', cachebust=true) }}">
@@ -128,29 +64,10 @@
             </a>
         </div>
     </div>
-    <script>
-        const cls = document.body.classList;
-        const getSessionTheme = sessionStorage.getItem("theme");
-        if (getSessionTheme === "dark") {
-            cls.toggle("dark-mode", true);
-        } else if (getSessionTheme === "light") {
-            cls.toggle("dark-mode", false);
-        } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-            cls.toggle("dark-mode", true);
-        }
-
-        document.getElementById("dark-mode-on").addEventListener("click", function(e) {
-            cls.toggle("dark-mode", true);
-            sessionStorage.setItem("theme", "dark");
-        });
-        document.getElementById("dark-mode-off").addEventListener("click", function(e) {
-            cls.toggle("dark-mode", false);
-            sessionStorage.setItem("theme", "light");
-        });
-    </script>
-    <script type="text/javascript">
-        let progress_meter=document.getElementById("progress_meter"),height=document.body.scrollHeight-screen.height,last_position=window.scrollY;function update_progress_meter(){height=document.body.clientHeight-window.innerHeight,current_position=window.scrollY,progress=Math.ceil(current_position/height*100),height==0?progress=100:progress<0?progress=0:progress>100&&(progress=100),progress_meter.innerText=(progress==100?"End":(progress+"%"))}let ticking=!1;window.addEventListener('scroll',function(a){ticking||(window.requestAnimationFrame(function(){update_progress_meter(),ticking=!1}),ticking=!0)}),progress_meter.style.textDecoration='none',update_progress_meter()
-    </script>
+    <!-- JS for light/dark switch, minified -->
+    <script>const cls=document.body.classList;const getSessionTheme=sessionStorage.getItem("theme");if(getSessionTheme==="dark"){cls.toggle("dark-mode",true)}else if(getSessionTheme==="light"){cls.toggle("dark-mode",false)}else if(window.matchMedia("(prefers-color-scheme: dark)").matches){cls.toggle("dark-mode",true)}document.getElementById("dark-mode-on").addEventListener("click",function(e){cls.toggle("dark-mode",true);sessionStorage.setItem("theme","dark")});document.getElementById("dark-mode-off").addEventListener("click",function(e){cls.toggle("dark-mode",false);sessionStorage.setItem("theme","light")});</script>
+    <!-- JS for progress meter, minified -->
+    <script type="text/javascript">let progress_meter=document.getElementById("progress_meter"),height=document.body.scrollHeight-screen.height,last_position=window.scrollY;function update_progress_meter(){height=document.body.clientHeight-window.innerHeight,current_position=window.scrollY,progress=Math.ceil(current_position/height*100),height==0?progress=100:progress<0?progress=0:progress>100&&(progress=100),progress_meter.innerText=(progress==100?"End":(progress+"%"))}let ticking=!1;window.addEventListener('scroll',function(a){ticking||(window.requestAnimationFrame(function(){update_progress_meter(),ticking=!1}),ticking=!0)}),progress_meter.style.textDecoration='none',update_progress_meter()</script>
     <noscript>
         <style>
             .dark-mode-buttons {
