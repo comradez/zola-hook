@@ -6,5 +6,5 @@ min_version = "0.15.2"
 demo = "https://inputusername.github.io/zola-hook/"
 
 [author]
-name = "Koen Bolhuis"
-homepage = "https://koen.bolhu.is"
+name = "Koen Bolhuis, Chuyan Zhang"
+homepage = "https://koen.bolhu.is, https://zcy.moe"

@@ -116,6 +116,15 @@ code {
     }
 }
 
+.side-by-side-container {
+    text-align: center;
+}
+
+.side-by-side-container img {
+    display: inline-block;
+    margin-right: 3px;
+}
+
 #action-botton {
     $bottonSize: 2.5rem;
     position: fixed;
@@ -123,8 +132,6 @@ code {
     width: $bottonSize;
     right: 1rem;
     bottom: 1rem;
-
-    // font-family: $monospaceFonts;
 
     overflow: hidden;
 
