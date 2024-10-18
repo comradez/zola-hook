@@ -7,6 +7,7 @@ This is a fork of [hook](https://github.com/InputUsername/zola-hook.git), which 
 - Added KaTeX support for formulas.
   Note that Zola will escape `&` into `&amp;` which disrupts a multi-line formula environment if alignment is used. The easist way to mitigate that is to wrap your `$$` with a pair of `<p></p>` so that Zola treats content inside as raw HTML and keeps it intact.
 - Added page percentage calculation and "back to top" button.
+- Added collapsible block for content show/hide, you can use shortcode `collapsible` to use it.
 - Added "should-invert" in CSS so that images could go inverted with theme change.
 - Added "side-by-side-container" in CSS to allow horizontally centered multiple images arranged size by side.
   Note that to use these CSS styles you need (for now) to write raw HTML :(

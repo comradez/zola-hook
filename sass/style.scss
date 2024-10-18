@@ -181,3 +181,34 @@ body.dark-mode {
         filter: invert(100%);
     }
 }
+
+.collapsible a:hover {
+    box-shadow: 0 1px;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+}
+
+.collapsible {
+    margin: 0 2px 40px;
+    border: 1px solid var(--border);
+    background: var(--code-bg);
+    border-radius: var(--radius);
+    padding: 0.4em;
+}
+
+.collapsible details summary {
+    cursor: pointer;
+    margin-inline-start: 20px;
+}
+.collapsible details[open] summary {
+    cursor: pointer;
+}
+
+.collapsible .details {
+    display: inline;
+    font-weight: 500;
+}
+.collapsible .inner {
+    margin: 0 20px;
+    padding: 10px 20px;
+}

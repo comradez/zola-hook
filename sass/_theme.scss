@@ -47,6 +47,10 @@ $url-background-dark: #3b3a39;
         background-color: $tertiary;
     }
 
+    .collapsible {
+        background-color: $tertiary;
+    }
+
     pre code {
         background-color: transparent;
     }
@@ -86,6 +90,10 @@ $url-background-dark: #3b3a39;
     }
 
     code {
+        background-color: $tertiary-dark;
+    }
+
+    .collapsible {
         background-color: $tertiary-dark;
     }
 
