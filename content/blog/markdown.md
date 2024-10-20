@@ -49,6 +49,14 @@ Ordered list:
 
 <div class="doublespace"></div>
 
+{{ collapsible( summary="Collapsible", content="I can eat glass, it does not hurt me." ) }}
+
+LaTeX formula: \\(e^{i\pi} + 1 = 0\\)
+
+$$
+\int_{-\infty}^{\infty} \frac{1}{\sqrt{2\pi}\sigma} \exp\left(-\frac{(x - \mu)^2}{2\sigma^2}\right) \text{d} x = 1
+$$
+
 [^1]: A footnote. Footnotes can be used for things that could have explanation or extra context, but
 for which the explanation is not relevant or otherwise desirable to have inline.
 
