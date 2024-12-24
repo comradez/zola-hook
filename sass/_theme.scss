@@ -134,6 +134,22 @@ $url-background-dark: #3b3a39;
     }
 }
 
+.language-switch-buttons {
+    position: absolute;
+
+    top: 1em;
+    right: 3em;
+}
+
+.language-switch-button {
+    border: none;
+    background-color: transparent;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
 body:not(.dark-mode) {
     @include light-theme;
 
@@ -142,6 +158,14 @@ body:not(.dark-mode) {
     }
 
     #dark-mode-off {
+        display: none;
+    }
+
+    #language-switch-dark-on {
+        display: inline;
+    }
+
+    #language-switch-dark-off {
         display: none;
     }
 }
@@ -154,6 +178,14 @@ body.dark-mode {
     }
 
     #dark-mode-off {
+        display: inline;
+    }
+
+    #language-switch-dark-on {
+        display: none;
+    }
+
+    #language-switch-dark-off {
         display: inline;
     }
 }

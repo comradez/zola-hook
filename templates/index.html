@@ -54,6 +54,10 @@
         <button class="dark-mode-button" id="dark-mode-on"><img src="{{ get_url(path='dark_mode.svg') }}" width="24" height="24" alt=""></button>
         <button class="dark-mode-button" id="dark-mode-off"><img src="{{ get_url(path='light_mode.svg') }}" width="24" height="24" alt=""></button>
     </div>
+    <div class="language-switch-buttons">
+        <button class="language-switch-button" id="language-switch-dark-on"><img src="{{ get_url(path='translation_dark.svg') }}" width="24" height="24" alt=""></button>
+        <button class="language-switch-button" id="language-switch-dark-off"><img src="{{ get_url(path='translation_light.svg') }}" width="24" height="24" alt=""></button>
+    </div>
     <div id="action-botton">
         <div class="action-wrapper">
             <div class="action meter">
@@ -68,6 +72,8 @@
     <script>const cls=document.body.classList;const getSessionTheme=sessionStorage.getItem("theme");if(getSessionTheme==="dark"){cls.toggle("dark-mode",true)}else if(getSessionTheme==="light"){cls.toggle("dark-mode",false)}else if(window.matchMedia("(prefers-color-scheme: dark)").matches){cls.toggle("dark-mode",true)}document.getElementById("dark-mode-on").addEventListener("click",function(e){cls.toggle("dark-mode",true);sessionStorage.setItem("theme","dark")});document.getElementById("dark-mode-off").addEventListener("click",function(e){cls.toggle("dark-mode",false);sessionStorage.setItem("theme","light")});</script>
     <!-- JS for progress meter, minified -->
     <script type="text/javascript">let progress_meter=document.getElementById("progress_meter"),height=document.body.scrollHeight-screen.height,last_position=window.scrollY;function update_progress_meter(){height=document.body.clientHeight-window.innerHeight,current_position=window.scrollY,progress=Math.ceil(current_position/height*100),height==0?progress=100:progress<0?progress=0:progress>100&&(progress=100),progress_meter.innerText=(progress==100?"End":(progress+"%"))}let ticking=!1;window.addEventListener('scroll',function(a){ticking||(window.requestAnimationFrame(function(){update_progress_meter(),ticking=!1}),ticking=!0)}),progress_meter.style.textDecoration='none',update_progress_meter()</script>
+    <!-- JS for language toggle, minified -->
+    <script type="text/javascript">function toggle_language(){const currentUrl=window.location.href;const url=new URL(currentUrl);const path=url.pathname;if(path.startsWith('/en/')){const newPath=path.replace('/en','');const newUrl=`${url.origin }${ newPath }${url.search }${url.hash }`;window.location.href=newUrl}else{const newPath=`/en${ path }`;const newUrl=`${url.origin }${ newPath }${url.search }${url.hash }`;window.location.href=newUrl}}document.getElementById('language-switch-dark-on').addEventListener('click',toggle_language);document.getElementById('language-switch-dark-off').addEventListener('click',toggle_language);</script>
     <noscript>
         <style>
             .dark-mode-buttons {
