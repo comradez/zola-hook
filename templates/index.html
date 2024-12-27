@@ -30,7 +30,13 @@
     </header>
     {% endblock header %}
     {% block content %}
-    {% set blog = get_section(path="blog/_index.md") %}
+
+    {% if lang == config.default_language %}
+        {% set blog = get_section(path="blog/_index.md") %}
+    {% else %}
+        {% set blog = get_section(path="blog/_index." ~ lang ~ ".md") %}
+    {% endif %}
+
     {% if section.content or blog.pages %}
     <main>
         {% if section.content %}
@@ -42,7 +48,7 @@
         <h2>Recent posts</h2>
         <ul>
             {% for post in blog.pages | slice(end=20) %}
-            <li><a href="{{ post.permalink }}">{{ post.title }}</a></li>
+                <li><a href="{{ post.permalink }}">{{ post.title }}</a></li>
             {% endfor %}
         </ul>
         <p><a href="{{ blog.permalink }}">Archive</a></p>
@@ -73,7 +79,7 @@
     <!-- JS for progress meter, minified -->
     <script type="text/javascript">let progress_meter=document.getElementById("progress_meter"),height=document.body.scrollHeight-screen.height,last_position=window.scrollY;function update_progress_meter(){height=document.body.clientHeight-window.innerHeight,current_position=window.scrollY,progress=Math.ceil(current_position/height*100),height==0?progress=100:progress<0?progress=0:progress>100&&(progress=100),progress_meter.innerText=(progress==100?"End":(progress+"%"))}let ticking=!1;window.addEventListener('scroll',function(a){ticking||(window.requestAnimationFrame(function(){update_progress_meter(),ticking=!1}),ticking=!0)}),progress_meter.style.textDecoration='none',update_progress_meter()</script>
     <!-- JS for language toggle, minified -->
-    <script type="text/javascript">function toggle_language(){const currentUrl=window.location.href;const url=new URL(currentUrl);const path=url.pathname;if(path.startsWith('/en/')){const newPath=path.replace('/en','');const newUrl=`${url.origin }${ newPath }${url.search }${url.hash }`;window.location.href=newUrl}else{const newPath=`/en${ path }`;const newUrl=`${url.origin }${ newPath }${url.search }${url.hash }`;window.location.href=newUrl}}document.getElementById('language-switch-dark-on').addEventListener('click',toggle_language);document.getElementById('language-switch-dark-off').addEventListener('click',toggle_language);</script>
+    <script type="text/javascript">function toggle_language(){const currentUrl=window.location.href;const url=new URL(currentUrl);const path=url.pathname;if(path.startsWith('/en')){const newPath=path.replace('/en','');const newUrl=`${url.origin }${ newPath }${url.search }${url.hash }`;window.location.href=newUrl}else{const newPath=`/en${ path }`;const newUrl=`${url.origin }${ newPath }${url.search }${url.hash }`;window.location.href=newUrl}}document.getElementById('language-switch-dark-on').addEventListener('click',toggle_language);document.getElementById('language-switch-dark-off').addEventListener('click',toggle_language);</script>
     <noscript>
         <style>
             .dark-mode-buttons {

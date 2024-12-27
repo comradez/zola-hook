@@ -4,7 +4,11 @@
 
 {% block header %}
 <header class="space">
-    <a href="{{ config.base_url }}">&LeftArrow; Home</a>
+    {% if lang == config.default_language %}
+        <a href="{{ config.base_url }}">&LeftArrow; Home</a>
+    {% else %}
+        <a href="{{ config.base_url }}/{{ lang }}">&LeftArrow; Home</a>
+    {% endif %}
 </header>
 {% endblock header %}
 
