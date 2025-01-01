@@ -63,6 +63,10 @@
     <div class="language-switch-buttons">
         <button class="language-switch-button" id="language-switch-dark-on"><img src="{{ get_url(path='translation_dark.svg') }}" width="24" height="24" alt=""></button>
         <button class="language-switch-button" id="language-switch-dark-off"><img src="{{ get_url(path='translation_light.svg') }}" width="24" height="24" alt=""></button>
+        <ul class="language-dropdown">
+            <li class="language-option" id="switch-to-en">English</li>
+            <li class="language-option" id="switch-to-zh-cn">中文</li>
+        </ul>
     </div>
     <div id="action-botton">
         <div class="action-wrapper">
@@ -79,7 +83,7 @@
     <!-- JS for progress meter, minified -->
     <script type="text/javascript">let progress_meter=document.getElementById("progress_meter"),height=document.body.scrollHeight-screen.height,last_position=window.scrollY;function update_progress_meter(){height=document.body.clientHeight-window.innerHeight,current_position=window.scrollY,progress=Math.ceil(current_position/height*100),height==0?progress=100:progress<0?progress=0:progress>100&&(progress=100),progress_meter.innerText=(progress==100?"End":(progress+"%"))}let ticking=!1;window.addEventListener('scroll',function(a){ticking||(window.requestAnimationFrame(function(){update_progress_meter(),ticking=!1}),ticking=!0)}),progress_meter.style.textDecoration='none',update_progress_meter()</script>
     <!-- JS for language toggle, minified -->
-    <script type="text/javascript">function toggle_language(){const currentUrl=window.location.href;const url=new URL(currentUrl);const path=url.pathname;if(path.startsWith('/en')){const newPath=path.replace('/en','');const newUrl=`${url.origin }${ newPath }${url.search }${url.hash }`;window.location.href=newUrl}else{const newPath=`/en${ path }`;const newUrl=`${url.origin }${ newPath }${url.search }${url.hash }`;window.location.href=newUrl}}document.getElementById('language-switch-dark-on').addEventListener('click',toggle_language);document.getElementById('language-switch-dark-off').addEventListener('click',toggle_language);</script>
+    <script type="text/javascript">let toggle_language=function(lang_code){return function(){const currentUrl=window.location.href;const url=new URL(currentUrl);const path=url.pathname;if(!path.startsWith(`/${ lang_code }`)){const newPath=`/${ lang_code }${ path }`;const newUrl=`${url.origin }${ newPath }${url.search }${url.hash }`;window.location.href=newUrl}}};let toggle_default_language=function(){const currentUrl=window.location.href;const url=new URL(currentUrl);const path=url.pathname;const possible_lang_codes=['en'];const lang_code=path.split("/")[1];if(possible_lang_codes.includes(lang_code)){const newPath=path.replace(`/${ lang_code }`,'');const newUrl=`${url.origin }${ newPath }${url.search }${url.hash }`;window.location.href=newUrl}};document.getElementById('switch-to-en').addEventListener('click',toggle_language('en'));document.getElementById('switch-to-zh-cn').addEventListener('click',toggle_default_language);</script>
     <noscript>
         <style>
             .dark-mode-buttons {

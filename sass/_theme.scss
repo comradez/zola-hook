@@ -39,6 +39,14 @@ $url-background-dark: #3b3a39;
         color: darken($accent, 30%);
     }
 
+    .language-option:hover {
+        &:after {
+            color: $after;
+        }
+        background: $url-background;
+        color: darken($accent, 30%);
+    }
+
     blockquote {
         border-left: 2px solid $secondary;
     }
@@ -85,6 +93,14 @@ $url-background-dark: #3b3a39;
         color: lighten($accent-dark, 10%);
     }
 
+    .language-option:hover {
+        &:after {
+            color: $after-dark;
+        }
+        background: $url-background-dark;
+        color: lighten($accent-dark, 10%);
+    }
+
     blockquote {
         border-left: 2px solid $secondary-dark;
     }
@@ -120,6 +136,7 @@ $url-background-dark: #3b3a39;
 
 .dark-mode-buttons {
     position: absolute;
+    display: inline-block;
 
     top: 1em;
     right: 1em;
@@ -148,6 +165,31 @@ $url-background-dark: #3b3a39;
     &:hover {
         cursor: pointer;
     }
+}
+
+.language-dropdown {
+    position: absolute;
+    top: 10px;
+    right: 0;
+    display: none;
+}
+
+.language-option {
+    &:hover {
+        cursor: pointer;
+    }
+    list-style-type: none;
+    padding-top: 3px;
+    padding-left: 3px;
+    padding-right: 3px;
+
+    &:after {
+        content: "°";
+    }
+}
+
+.language-switch-buttons:hover .language-dropdown {
+    display: block;
 }
 
 body:not(.dark-mode) {
